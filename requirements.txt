@@ -2,3 +2,4 @@ flask
 flask-session
 flask-sqlalchemy
 flask-migrate
+psycopg2-binary
