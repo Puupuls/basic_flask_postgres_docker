@@ -2,3 +2,4 @@ __pycache__/
 .idea
 postgres_data/
 .postgres_data
+# .env

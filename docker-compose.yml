@@ -7,8 +7,14 @@ services:
     volumes:
       - .:/app
     environment:
-      - FLASK_APP=app.py
-      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_ENV=${FLASK_ENV}
+      - FLASK_APP=${FLASK_APP}
+      - FLASK_RUN_HOST=${FLASK_RUN_HOST}
+      - POSTGRES_PORT=5432
+      - SECRET_KEY=${SECRET_KEY}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - db
   db:
@@ -16,8 +22,8 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=flask
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
