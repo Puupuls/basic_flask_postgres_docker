@@ -12,7 +12,8 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = 'secret key'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/flask'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@db:5432/flask'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flask.db'
 
     db.init_app(app)
     sess.init_app(app)
