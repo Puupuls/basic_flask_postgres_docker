@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/styles.css" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+    {% assets "css" %}
+        <link rel="stylesheet"
+              href="{{ ASSET_URL }}"/>
+    {% endassets %}
+
 </head>
 <body>
     {{ request.url }}

@@ -3,7 +3,8 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
-from flask_migrate import Migrate
+from flask_migrate import Migrate, upgrade
+from flask_assets import Environment, Bundle
 
 db = SQLAlchemy()
 sess = Session()
@@ -22,6 +23,21 @@ def create_app():
     db.init_app(app)
     sess.init_app(app)
     migrate.init_app(app, db)
+    assets = Environment(app)
+
+    #############ASSETS#############
+    assets.debug = app.debug
+    assets.config["LIBSASS_STYLE"] = "expanded" if assets.debug else "compressed"
+    css = Bundle(
+        "scss/main.scss",
+        filters="libsass",
+        depends="**/*.scss",
+        output="scss.css",
+    )
+    assets.register("css", css)
+
+    with app.app_context():
+        upgrade()
 
     # Register blueprints ("controllers" as in normal MVC framework)
     from blueprints.hello import hello

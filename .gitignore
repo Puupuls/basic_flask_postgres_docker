@@ -2,4 +2,6 @@ __pycache__/
 .idea
 postgres_data/
 .postgres_data
-# .env
+.env
+**/.webassets-cache
+static/scss.css
