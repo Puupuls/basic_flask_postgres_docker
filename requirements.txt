@@ -2,4 +2,6 @@ flask
 flask-session
 flask-sqlalchemy
 flask-migrate
+flask-assets
 psycopg2-binary
+libsass
